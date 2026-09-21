@@ -1,151 +1,169 @@
 # Transformer Mastery Course
 
-> A complete, structured, self-contained course for mastering Transformer
-> architecture — from foundations to advanced concepts, with theory and
-> hands-on PyTorch code integrated side by side in every module.
+![Python](https://img.shields.io/badge/Python-3.9%2B-3776AB?logo=python&logoColor=white)
+![PyTorch](https://img.shields.io/badge/PyTorch-2.0%2B-EE4C2C?logo=pytorch&logoColor=white)
+![License](https://img.shields.io/badge/license-learning%20resource-informational)
 
-This course merges two parts into one learning path:
-- **Theory** (`*.md` lessons) — concepts, math, and architecture explanations
-- **Code** (`code/` folders) — runnable PyTorch/NumPy implementations for each lesson
+A structured, code-first course for understanding Transformer architecture from
+the ground up. Each stage combines clear theory, mathematical intuition, and
+runnable Python examples so that you can move from "what does attention do?"
+to building and debugging Transformer systems yourself.
 
-You never have to guess which script goes with which lesson — every module's
-`code/` folder sits right next to the lessons it belongs to.
+## Project Overview
 
-## Who This Is For
+The course is organized as a single learning path:
 
-- Complete beginners to Transformers with basic Python + some ML exposure
-- Undergraduate AI & Data Science students
-- Python developers with basic deep learning knowledge
-- Anyone seeking **complete, practical mastery** over Transformers
+- Markdown lessons explain the concepts, equations, and architecture.
+- Numbered Python scripts provide runnable PyTorch and NumPy examples.
+- Projects and mastery material turn the concepts into practical skills.
 
-## Prerequisites
+The code lives beside the lessons it supports. Within each code directory,
+scripts are numbered from `01-...` so you can execute them in a sensible local
+sequence. See [GETTING_STARTED.md](GETTING_STARTED.md) for Windows PowerShell
+commands and the complete setup workflow.
 
-- Python (intermediate)
-- Basic Linear Algebra (vectors, matrices)
-- Basic Deep Learning (neural networks, backpropagation, loss functions)
-- PyTorch basics (tensors, `nn.Module`) — module `04-mathematics/code` will
-  warm you up on tensor mechanics if you're rusty
+## Goals And Learning Outcomes
 
-## Setup
+By the end of the course, you should be able to:
 
-See `GETTING_STARTED.md` for environment setup. Quick version:
+- Explain why attention-based models replaced recurrent architectures for many sequence tasks.
+- Derive and implement scaled dot-product, self, cross, causal, and multi-head attention.
+- Track tensor shapes through embeddings, projections, masks, residual paths, and normalization.
+- Build a complete Encoder-Decoder Transformer in PyTorch.
+- Compare BERT, GPT, T5, LLaMA, Vision Transformer, and multimodal designs.
+- Understand practical techniques including RoPE, KV caching, Flash Attention, MoE, and efficient attention.
+- Train, evaluate, generate from, and debug small Transformer models.
+- Apply the material in four progressively harder projects and prepare for technical interviews.
 
-```bash
-pip install -r requirements.txt
+## Audience And Prerequisites
+
+This course is for Python developers, AI and Data Science students, and
+engineers who want a practical understanding of Transformers rather than only
+an API-level overview.
+
+You should be comfortable with Python and have introductory knowledge of:
+
+- Vectors, matrices, matrix multiplication, and basic probability.
+- Neural networks, backpropagation, loss functions, and optimization.
+- Python environments and basic PyTorch tensors and `nn.Module`.
+
+If tensor mechanics are rusty, `04-mathematics/code/` provides focused shape,
+broadcasting, matrix-operation, and `einsum` exercises.
+
+## Quick Start
+
+From the repository root in Windows PowerShell:
+
+```powershell
+py -m venv .venv
+.\.venv\Scripts\Activate.ps1
+python -m pip install --upgrade pip
+python -m pip install -r requirements.txt
+python 02-attention\code\01-attention_manual_math.py
 ```
 
-## Course Map (read + run in this order)
+For PowerShell execution-policy guidance, troubleshooting, and a fuller study
+workflow, read [GETTING_STARTED.md](GETTING_STARTED.md).
 
-| # | Module | What You'll Learn | Code Included | Est. Time |
-|---|--------|--------------------|----------------|-----------|
-| 00 | `00-roadmap/` | Full course roadmap & progress tracker | — | 15 min |
-| 01 | `01-foundations/` | Neural nets, embeddings, RNN/LSTM/GRU, why Transformers won | — | 2-3 hrs |
-| 02 | `02-attention/` | Attention intuition, QKV, scaled dot-product, self-attention, multi-head attention | attention from scratch, attention variants, multi-head/grouped/multi-query attention, attention heatmap visualizer | 4-5 hrs |
-| 03 | `03-transformer-core/` | Positional encoding, encoder/decoder blocks, cross-attention, masking, feed-forward, residuals, LayerNorm, full assembly | embeddings, RMSNorm/LayerNorm, SwiGLU, encoder block, causal decoder block, full encoder-decoder model | 5-6 hrs |
-| 04 | `04-mathematics/` | Linear algebra, attention math, softmax, loss functions, backprop through attention | tensor shapes, broadcasting, einsum, matrix ops drills | 2-3 hrs |
-| 05 | `05-build-from-scratch/` | Guided rebuild of the whole Transformer, lesson by lesson | code-map pointing back into modules 02-04 (see `00-CODE-MAP.md`) | 6-8 hrs |
-| 06 | `06-training/` | Data pipeline, tokenization, training loop, optimization, LR scheduling, debugging | training loop, checkpointing, LR scheduler, shape/masking/NaN-loss debugging scripts | 3-4 hrs |
-| 07 | `07-modern-transformers/` | BERT, GPT, T5, LLaMA, ViT, multimodal Transformers | mini-BERT (encoder-only), mini-GPT (decoder-only) | 3-4 hrs |
-| 08 | `08-advanced-concepts/` | KV cache, RoPE, Flash Attention, MoE, efficient attention, scaling laws | KV cache, RoPE, sliding-window & flash-attention concepts, MoE, sampling strategies, scaling experiments | 3-4 hrs |
-| 09 | `09-projects/` | 4 hands-on projects tying everything together | full starter code per project | 8-10 hrs |
-| 10 | `10-mastery/` | Revision cheatsheet, interview prep, common mistakes, final checklist | attention + multi-head attention test suites | 2-3 hrs |
+## Course Roadmap
 
-**Total: ~40-50 hours** for complete mastery.
+Study the modules in order. The estimated times are approximate and include
+reading, coding, and review.
 
-## Recommended Study Order
+| Module | Focus | Key practice | Time |
+| --- | --- | --- | --- |
+| `00-roadmap/` | Course map and progress tracking | Plan the learning path | 15 min |
+| `01-foundations/` | Neural networks, embeddings, RNNs, LSTMs, and GRUs | Build the intuition for Transformers | 2-3 hrs |
+| `02-attention/` | QKV, scaled dot-product, self, cross, causal, and multi-head attention | Run attention implementations and visualizations | 4-5 hrs |
+| `03-transformer-core/` | Positional encoding, encoder/decoder blocks, masking, FFNs, residuals, and normalization | Assemble core Transformer components | 5-6 hrs |
+| `04-mathematics/` | Linear algebra, softmax, loss, and backpropagation | Practice tensor shapes and operations | 2-3 hrs |
+| `05-build-from-scratch/` | Guided reconstruction of a Transformer | Follow `00-CODE-MAP.md` across modules 02-04 | 6-8 hrs |
+| `06-training/` | Data pipelines, tokenization, training, optimization, scheduling, and debugging | Run training and diagnostic scripts | 3-4 hrs |
+| `07-modern-transformers/` | BERT, GPT, T5, LLaMA, ViT, and multimodal models | Run mini-BERT and mini-GPT examples | 3-4 hrs |
+| `08-advanced-concepts/` | KV cache, RoPE, Flash Attention, MoE, efficient attention, and scaling | Explore modern efficiency techniques | 3-4 hrs |
+| `09-projects/` | Four applied Transformer projects | Build increasingly complete systems | 8-10 hrs |
+| `10-mastery/` | Revision, common mistakes, interview questions, and final checks | Consolidate and test your knowledge | 2-3 hrs |
 
-1. Read `00-roadmap/learning-roadmap.md` first and track your progress there.
-2. Complete `01-foundations/` sequentially — no code yet, pure grounding.
-3. Deep-dive into `02-attention/`, coding along with everything in its `code/`
-   folder — this is the heart of the course.
-4. Study `03-transformer-core/` alongside its `code/` folder.
-5. Read `04-mathematics/` and run the tensor drills in its `code/` folder
-   whenever a shape or gradient claim doesn't feel intuitive yet.
-6. Work through `05-build-from-scratch/` — open `00-CODE-MAP.md` first, since
-   this section is a guided rebuild that reuses code from modules 02-04
-   rather than duplicating it.
-7. Follow `06-training/` and actually run the training loop end to end.
-8. Explore `07-modern-transformers/`, running mini-BERT and mini-GPT.
-9. Study `08-advanced-concepts/` for the optimizations that show up in every
-   modern LLM.
-10. Build all four projects in `09-projects/`, in order — each one is
-    slightly harder than the last.
-11. Finish with `10-mastery/`: run the test suite, then work through the
-    revision cheatsheet and interview questions.
+Expected total: approximately **40-50 hours**.
 
-## Final Outcomes
+## Recommended Workflow
 
-After completing this course, you will be able to:
+1. Read `00-roadmap/learning-roadmap.md` and record your starting point.
+2. Complete each module's lessons before running its code.
+3. Execute numbered scripts in each populated `code/` directory.
+4. Write down the input and output shape of every major operation.
+5. Reimplement important components without looking at the solution.
+6. Use `09-projects/` to connect isolated ideas into working systems.
+7. Finish with `10-mastery/` and revisit any unchecked outcome.
 
-- [ ] Derive and implement scaled dot-product attention from scratch
-- [ ] Build a complete Transformer (Encoder + Decoder) in PyTorch
-- [ ] Understand BERT, GPT, T5, and LLaMA architectures
-- [ ] Implement KV Cache, RoPE, Flash Attention, and MoE
-- [ ] Train and generate text with a Mini GPT
-- [ ] Debug Transformer training issues (shape errors, masking bugs, NaN loss)
-- [ ] Pass the self-test suite in `10-mastery/code/`
-- [ ] Answer advanced Transformer interview questions
+## Repository Structure
 
-## Tensor Shape Convention
-
-Used consistently across every lesson and script in this course:
-
-- **B** = Batch size
-- **T** = Sequence length (tokens)
-- **C** or **d_model** = Embedding dimension
-- **d_k** = Key/Query dimension per head
-- **d_v** = Value dimension per head
-- **h** = Number of attention heads
-
-Standard shape: `(B, T, C)`
-
-## Folder Structure
-
-```
+```text
 transformer-mastery-course/
-├── README.md                  <- you are here
+├── README.md
 ├── GETTING_STARTED.md
 ├── requirements.txt
-├── 00-roadmap/
-├── 01-foundations/
-├── 02-attention/
-│   └── code/
-├── 03-transformer-core/
-│   └── code/
-├── 04-mathematics/
-│   └── code/
-├── 05-build-from-scratch/
-│   └── 00-CODE-MAP.md         <- points back to 02-04's code
-├── 06-training/
-│   └── code/
-├── 07-modern-transformers/
-│   └── code/
-├── 08-advanced-concepts/
-│   └── code/
-├── 09-projects/
-│   └── code/
-└── 10-mastery/
-    └── code/
+├── 00-roadmap/                  # Roadmap and progress tracker
+├── 01-foundations/              # Neural-network and sequence foundations
+├── 02-attention/                # Attention theory and implementations
+├── 03-transformer-core/         # Transformer building blocks
+├── 04-mathematics/              # Math and tensor-operation practice
+├── 05-build-from-scratch/       # Guided end-to-end reconstruction
+├── 06-training/                 # Training workflows and debugging
+├── 07-modern-transformers/      # BERT, GPT, T5, LLaMA, ViT, multimodal
+├── 08-advanced-concepts/        # Efficiency and scaling techniques
+├── 09-projects/                 # Applied projects and starter code
+└── 10-mastery/                  # Review, tests, and interview preparation
 ```
 
-## Notes on This Edition
+Most modules with runnable examples contain a `code/` directory. Some also
+contain focused subdirectories such as `visualizations/`, `debugging/`,
+`generation/`, and `experiments/`. `05-build-from-scratch/code/` is reserved
+for the guided code map and is currently intentionally empty.
 
-This edition merges the original theory and code repositories into a single
-course and fixes a few rough edges found while combining them:
+## Tensor-Shape Conventions
 
-- Every module now has its code sitting alongside the matching lessons,
-  instead of theory and code living in two separate places.
-- `09-projects/`: two project files had filenames that didn't match their
-  actual content (a "language model" file that was actually the text
-  classifier, and vice versa) — renamed so filenames now match content and
-  match the corresponding `code/` subfolder.
-- Added `04-mathematics/code/`, pairing the tensor-mechanics drills
-  (broadcasting, einsum, shapes, matrix ops) with the math lessons they
-  actually support.
-- Added attention/positional-encoding visualization scripts into the
-  modules they visualize, so they get used exactly when they're most useful.
-- All 55 code files were verified to compile cleanly with no syntax errors.
+The course uses these symbols consistently:
 
----
+| Symbol | Meaning |
+| --- | --- |
+| `B` | Batch size |
+| `T` | Sequence length, measured in tokens |
+| `C` or `d_model` | Model or embedding dimension |
+| `h` | Number of attention heads |
+| `d_k` | Query/key dimension per head |
+| `d_v` | Value dimension per head |
 
-*Built for maximum learning value with minimum wasted time.*
+The standard token representation is `(B, T, C)`. Multi-head attention often
+reshapes it to `(B, h, T, d_k)` or `(B, h, T, d_v)`. Always check whether a
+script uses batch-first or sequence-first tensors before comparing shapes.
+
+## Troubleshooting
+
+- **PowerShell blocks activation:** run
+  `Set-ExecutionPolicy -Scope Process -ExecutionPolicy Bypass`, then activate
+  `.\.venv\Scripts\Activate.ps1` again.
+- **`python` or `py` is not recognized:** install Python 3.9+ and enable
+  "Add Python to PATH", then open a new PowerShell window.
+- **Imports fail:** confirm `(.venv)` appears in the prompt and run
+  `python -m pip install -r requirements.txt`.
+- **A file path fails:** use the numbered filename shown by `Get-ChildItem`.
+  For example, attention starts with
+  `python 02-attention\code\01-attention_manual_math.py`.
+- **A tensor shape fails:** inspect `04-mathematics/code/` and the debugging
+  scripts in `06-training/code/debugging/` before changing model logic.
+- **A visualization does not open:** run the script from an interactive Python
+  environment and confirm Matplotlib is installed in the active virtual environment.
+
+## Maintainer
+
+**Himanshu Jadhav**  
+Artificial Intelligence & Data Science Engineer
+
+Passionate about computer vision, real-world localized model deployment, and
+high-performance pipeline architecture.
+
+- GitHub: [himanshu-jadhav108](https://github.com/himanshu-jadhav108)
+- LinkedIn: [Himanshu Jadhav](https://www.linkedin.com/in/himanshu-jadhav-328082339)
+- Portfolio: [himanshu-jadhav-portfolio.vercel.app](https://himanshu-jadhav-portfolio.vercel.app/)
+- Instagram: [@himanshu_jadhav_108](https://www.instagram.com/himanshu_jadhav_108)
