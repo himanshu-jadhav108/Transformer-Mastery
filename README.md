@@ -12,7 +12,7 @@
 [![PyTorch](https://img.shields.io/badge/PyTorch-2.0%2B-EE4C2C?logo=pytorch&logoColor=white)](https://pytorch.org/get-started/locally/)
 [![Jupyter](https://img.shields.io/badge/Jupyter-Notebooks-F37626?logo=jupyter&logoColor=white)](https://jupyter.org/)
 [![Curriculum](https://img.shields.io/badge/Curriculum-100%25%20Complete-success)](00-roadmap/learning-roadmap.md)
-[![Projects](https://img.shields.io/badge/Projects-Specs%20Ready%20%7C%20Notebooks%20Soon-orange)](09-projects/)
+[![Projects](https://img.shields.io/badge/Projects-4%2F4%20Completed-success)](09-projects/)
 [![Environment check](https://github.com/himanshu-jadhav108/Transformer-Mastery/actions/workflows/smoke-test.yml/badge.svg)](https://github.com/himanshu-jadhav108/Transformer-Mastery/actions/workflows/smoke-test.yml)
 [![License: MIT](https://img.shields.io/badge/license-MIT-blue)](LICENSE)
 [![PRs welcome](https://img.shields.io/badge/PRs-welcome-brightgreen)](#contributing)
@@ -29,8 +29,8 @@
 
 ## Current Status
 
-- **Core Curriculum (Modules 00–08, 10):** **100% Complete.** All concept lessons, mathematical derivations, cheatsheets, and interactive Jupyter Notebooks are fully written and verified.
-- **Capstone Projects (Module 09):** Comprehensive architectural specifications and project briefs are ready for all four projects (`01` through `04`). Dedicated step-by-step Jupyter Notebooks for each project are actively in development and will be added in an upcoming update.
+- **Core Curriculum (Modules 00–08, 10):** **100% Complete.** All concept lessons, mathematical derivations, cheatsheets, and interactive practice notebooks are fully verified.
+- **Capstone Projects (Module 09):** **100% Complete.** All 4 standalone project notebooks (`Project_01.ipynb` through `Project-04.ipynb`) are fully implemented with reproducible experiments, training curves, and text generation.
 
 ---
 
@@ -57,16 +57,18 @@ def scaled_dot_product_attention(q, k, v, mask=None):
     return weights @ v, weights                         # (B, h, T, d_v)
 ```
 
-```text
-[Input Tokens: (B, T)] 
-        ↓  Token Embedding + Positional Encoding
-  [(B, T, C)]
-        ↓  Linear Projections (W_q, W_k, W_v) & Multi-Head Reshape
-  [(B, h, T, d_k)]
-        ↓  Attention Matrix: Softmax((Q @ K^T) / sqrt(d_k))
-  [(B, h, T, T)] × Value [(B, h, T, d_v)]
-        ↓  Concatenate Heads & Output Projection W_o
-  [(B, T, C)]
+```mermaid
+flowchart TD
+    A["Input Tokens: (B, T)"] -->|"Token Embedding + Positional Encoding"| B["Embeddings: (B, T, C)"]
+    B -->|"Linear Projections (W_q, W_k, W_v) & Multi-Head Reshape"| C["Q, K, V Heads: (B, h, T, d_k)"]
+    C -->|"Attention Matrix: Softmax((Q @ K^T) / sqrt(d_k))"| D["Attention Weights: (B, h, T, T) × Value: (B, h, T, d_v)"]
+    D -->|"Concatenate Heads & Output Projection W_o"| E["Output Representation: (B, T, C)"]
+
+    style A fill:#0f172a,stroke:#38bdf8,stroke-width:2px,color:#f8fafc
+    style B fill:#0f172a,stroke:#818cf8,stroke-width:2px,color:#f8fafc
+    style C fill:#0f172a,stroke:#c084fc,stroke-width:2px,color:#f8fafc
+    style D fill:#0f172a,stroke:#f472b6,stroke-width:2px,color:#f8fafc
+    style E fill:#0f172a,stroke:#34d399,stroke-width:2px,color:#f8fafc
 ```
 
 ---
@@ -144,6 +146,25 @@ flowchart LR
         P["09 Capstone Projects"] --> MA["10 Final Mastery"]
     end
     Foundations --> Build --> Modern --> Apply
+
+    style Foundations fill:#0f172a,stroke:#38bdf8,stroke-width:2px,color:#38bdf8
+    style Build fill:#0f172a,stroke:#818cf8,stroke-width:2px,color:#818cf8
+    style Modern fill:#0f172a,stroke:#c084fc,stroke-width:2px,color:#c084fc
+    style Apply fill:#0f172a,stroke:#34d399,stroke-width:2px,color:#34d399
+
+    style F fill:#1e293b,stroke:#38bdf8,stroke-width:1.5px,color:#f8fafc
+    style A fill:#1e293b,stroke:#38bdf8,stroke-width:1.5px,color:#f8fafc
+    style C fill:#1e293b,stroke:#38bdf8,stroke-width:1.5px,color:#f8fafc
+    style M fill:#1e293b,stroke:#38bdf8,stroke-width:1.5px,color:#f8fafc
+
+    style B fill:#1e293b,stroke:#818cf8,stroke-width:1.5px,color:#f8fafc
+    style T fill:#1e293b,stroke:#818cf8,stroke-width:1.5px,color:#f8fafc
+
+    style MO fill:#1e293b,stroke:#c084fc,stroke-width:1.5px,color:#f8fafc
+    style AD fill:#1e293b,stroke:#c084fc,stroke-width:1.5px,color:#f8fafc
+
+    style P fill:#1e293b,stroke:#34d399,stroke-width:1.5px,color:#f8fafc
+    style MA fill:#1e293b,stroke:#34d399,stroke-width:1.5px,color:#f8fafc
 ```
 
 | Module | Core Topics | Interactive Notebook | Status |
@@ -157,15 +178,16 @@ flowchart LR
 | [`06-training/`](06-training/) | Training loops, schedulers, checkpointing, shape & masking diagnostics | `06-Training.ipynb` | Ready |
 | [`07-modern-transformers/`](07-modern-transformers/) | BERT, GPT-2/3, T5, LLaMA, Vision Transformer (ViT), multimodal systems | `Modern-Transformer-Family.ipynb` | Ready |
 | [`08-advanced-concepts/`](08-advanced-concepts/) | KV caching, RoPE, Flash Attention, MoE, decoding (Greedy, Top-k, Top-p) | `Adevanced-Concepts.ipynb` | Ready |
-| [`09-projects/`](09-projects/) | 4 Capstone projects: Visualizer, Text Classifier, Mini LM, Mini GPT | Architecture specs ready (Notebooks coming soon) | Specs Ready |
+| [`09-projects/`](09-projects/) | 4 Capstone projects: Visualizer, Classifier, Mini LM, Mini GPT | 4 End-to-end Notebooks (`Project_01` to `04`) + specs | Ready |
 | [`10-mastery/`](10-mastery/) | Revision cheatsheets, 20 common pitfalls, ML interview questions, checklist | Cheatsheets & Review guides | Ready |
 
 ---
 
 ## Interactive Jupyter Notebooks
 
-Every core module features a dedicated, hands-on notebook:
+Every module features dedicated, hands-on notebooks with complete cell executions, intermediate prints, and visualizations:
 
+### Core Curriculum (Modules 01–08)
 1. **`01-foundations/Practice_01.ipynb`** — Vectors, word embeddings, RNN forward pass, and sequence modeling.
 2. **`02-attention/Practice_02.ipynb`** — Manual attention math, QKV projections, self-attention, and attention heatmaps.
 3. **`03-transformer-core/Practice_03.ipynb`** — Positional encodings (sinusoidal & learned), feed-forward networks, and normalization layers.
@@ -174,6 +196,12 @@ Every core module features a dedicated, hands-on notebook:
 6. **`06-training/06-Training.ipynb`** — Training loop implementation, learning rate schedules, and common training bugs.
 7. **`07-modern-transformers/Modern-Transformer-Family.ipynb`** — Exploring BERT, GPT, and modern Transformer family architectures.
 8. **`08-advanced-concepts/Adevanced-Concepts.ipynb`** — Advanced inference optimizations: RoPE, KV cache, and Mixture-of-Experts.
+
+### Capstone Projects (Module 09)
+9. **`09-projects/Project-01/Project_01.ipynb`** — **Project 1: Attention Visualizer** (interactive heatmap analysis & attention weight extraction).
+10. **`09-projects/Project-02/Project-02.ipynb`** — **Project 2: Transformer Classifier** (tokenization, pooling, classification head, training loop & validation).
+11. **`09-projects/Project-03/Project_03.ipynb`** — **Project 3: Mini Language Model** (autoregressive language modeling, next-token prediction & cross-entropy loss).
+12. **`09-projects/Project-04/Project-04.ipynb`** — **Project 4: Mini GPT from Scratch** (complete causal Transformer with temperature, top-k sampling & text generation).
 
 ---
 
@@ -230,7 +258,12 @@ Transformer-Mastery/
 ├── 06-training/                        # Training loop, loss & 06-Training.ipynb
 ├── 07-modern-transformers/             # BERT, GPT, LLaMA & Modern-Transformer-Family.ipynb
 ├── 08-advanced-concepts/               # RoPE, KV cache, MoE & Adevanced-Concepts.ipynb
-├── 09-projects/                        # 4 Capstone project blueprints (Notebooks coming soon)
+├── 09-projects/                        # 4 Complete Capstone Project Notebooks & Specs
+│   ├── Project-01/                     # Project 1: Attention Visualizer (Project_01.ipynb)
+│   ├── Project-02/                     # Project 2: Transformer Classifier (Project-02.ipynb)
+│   ├── Project-03/                     # Project 3: Mini Language Model (Project_03.ipynb)
+│   ├── Project-04/                     # Project 4: Mini GPT (Project-04.ipynb)
+│   └── README.md                       # Project track guidelines & quality principles
 └── 10-mastery/                         # Revision cheatsheets, interview QA & checklist
 ```
 
@@ -257,9 +290,13 @@ Module 05 features `GPT_From_Scratch.ipynb`, which walks through an end-to-end r
 </details>
 
 <details>
-<summary><b>When will the Capstone Project notebooks be added?</b></summary>
+<summary><b>What is included in the Module 09 Capstone Projects?</b></summary>
 
-The architectural specifications, concept maps, and expected outcomes for all 4 projects in `09-projects/` are ready now. Dedicated, step-by-step companion notebooks for each project are actively being finalized and will be pushed soon.
+Module 09 contains four complete, production-grade Jupyter Notebooks:
+1. **Project 1 (Attention Visualizer):** Tokenization, QKV projections, and Matplotlib attention weight heatmaps.
+2. **Project 2 (Transformer Classifier):** Encoder block, pooling layer, classification head, and full training/validation curves.
+3. **Project 3 (Mini Language Model):** Autoregressive next-token prediction, cross-entropy loss, and validation evaluation.
+4. **Project 4 (Mini GPT):** Complete decoder-only causal Transformer trained from scratch with temperature and top-k text generation.
 </details>
 
 <details>

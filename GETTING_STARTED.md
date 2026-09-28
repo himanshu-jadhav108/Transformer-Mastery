@@ -185,6 +185,10 @@ The practical implementations in this course are structured as self-contained **
 | **06 Training** | `06-training/06-Training.ipynb` | Training loops, loss computation & debugging traps |
 | **07 Modern Family** | `07-modern-transformers/Modern-Transformer-Family.ipynb` | BERT, GPT, LLaMA architectural implementations |
 | **08 Advanced Concepts** | `08-advanced-concepts/Adevanced-Concepts.ipynb` | RoPE, KV cache inference, and MoE routing |
+| **09 Projects** | `09-projects/Project-01/Project_01.ipynb` | Project 1: Attention Visualizer & Heatmaps |
+| | `09-projects/Project-02/Project-02.ipynb` | Project 2: Transformer Classifier & Training |
+| | `09-projects/Project-03/Project_03.ipynb` | Project 3: Mini Language Model & Next-Token Loss |
+| | `09-projects/Project-04/Project-04.ipynb` | Project 4: Full Mini GPT from Scratch & Generation |
 
 ### Running in VS Code (Recommended)
 1. Open the repository root: `code .`
@@ -213,17 +217,16 @@ Follow this loop to absorb concepts effectively:
 
 ---
 
-## 8. Module 09 Projects Notice
+## 8. Module 09 Capstone Projects
 
-Module `09-projects/` contains **4 Capstone Projects**:
-1. **Project 1:** Attention Visualizer
-2. **Project 2:** Text Classification Transformer
-3. **Project 3:** Mini Language Model
-4. **Project 4:** Mini GPT from Scratch
+Module `09-projects/` contains **4 complete end-to-end Capstone Projects**:
 
-### Current Status:
-- Detailed architectural blueprints, concept explanations, and implementation roadmaps (`project-01-*.md` through `project-04-*.md`) are ready in `09-projects/`.
-- Dedicated, step-by-step Jupyter Notebooks for each project are actively in development and will be added in an upcoming update. You can explore the architectural designs and begin structuring your own implementations right away.
+1. **Project 1: Attention Visualizer (`09-projects/Project-01/Project_01.ipynb`)** — Extract and visualize self-attention weights with interactive heatmaps across layers and heads.
+2. **Project 2: Transformer Classifier (`09-projects/Project-02/Project-02.ipynb`)** — Build a text classification model with pooling, training loop, evaluation metrics, and validation curves.
+3. **Project 3: Mini Language Model (`09-projects/Project-03/Project_03.ipynb`)** — Implement an autoregressive token prediction model trained with cross-entropy loss.
+4. **Project 4: Mini GPT from Scratch (`09-projects/Project-04/Project-04.ipynb`)** — Assemble a complete causal GPT decoder with temperature and top-k text generation.
+
+Each project includes architecture specifications, reproducible fixed seeds, training/loss curves, and generation tests. Run them in numerical order to synthesize everything you learned in the course.
 
 ---
 
